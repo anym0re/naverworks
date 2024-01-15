@@ -1,6 +1,6 @@
 {
-    "name": "socialiteproviders/naver",
-    "description": "Naver OAuth2 Provider for Laravel Socialite",
+    "name": "socialiteproviders/naverworks",
+    "description": "NaverWorks OAuth2 Provider for Laravel Socialite",
     "license": "MIT",
     "keywords": [
         "laravel",
@@ -11,14 +11,13 @@
     ],
     "authors": [
         {
-            "name": "Doojin So",
-            "email": "sodoojin@gmail.com"
+            "name": "fastlee",
+            "email": "fastlee@dnmd.com"
         }
     ],
     "support": {
         "issues": "https://github.com/socialiteproviders/providers/issues",
-        "source": "https://github.com/socialiteproviders/providers",
-        "docs": "https://socialiteproviders.com/naver"
+        "source": "https://github.com/socialiteproviders/providers"
     },
     "require": {
         "php": "^8.0",
@@ -29,7 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "SocialiteProviders\\Naver\\": ""
+            "SocialiteProviders\\NaverWorks\\": ""
         }
     }
 }

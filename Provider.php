@@ -1,6 +1,6 @@
 <?php
 
-namespace SocialiteProviders\Naver;
+namespace SocialiteProviders\NaverWorks;
 
 use GuzzleHttp\RequestOptions;
 use Illuminate\Support\Arr;
@@ -9,7 +9,7 @@ use SocialiteProviders\Manager\OAuth2\User;
 
 class Provider extends AbstractProvider
 {
-    public const IDENTIFIER = 'NAVER';
+    public const IDENTIFIER = 'NAVERWORKS';
 
     /**
      * {@inheritdoc}
@@ -17,7 +17,7 @@ class Provider extends AbstractProvider
     protected function getAuthUrl($state)
     {
         return $this->buildAuthUrlFromBase(
-            'https://nid.naver.com/oauth2.0/authorize',
+            'https://auth.worksmobile.com/oauth2/v2.0/authorize',
             $state
         );
     }
@@ -27,7 +27,7 @@ class Provider extends AbstractProvider
      */
     protected function getTokenUrl()
     {
-        return 'https://nid.naver.com/oauth2.0/token';
+        return 'https://auth.worksmobile.com/oauth2/v2.0/token';
     }
 
     /**
@@ -36,7 +36,7 @@ class Provider extends AbstractProvider
     protected function getUserByToken($token)
     {
         $response = $this->getHttpClient()->get(
-            'https://openapi.naver.com/v1/nid/me',
+            'https://www.worksapis.com/v1.0/users/me',
             [
                 RequestOptions::HEADERS => [
                     'Authorization' => 'Bearer '.$token,
@@ -55,11 +55,11 @@ class Provider extends AbstractProvider
     protected function mapUserToObject(array $user)
     {
         return (new User())->setRaw($user)->map([
-            'id'        => Arr::get($user, 'response.id'),
-            'name'      => Arr::get($user, 'response.name'),
-            'nickname'  => Arr::get($user, 'response.nickname'),
+            'id'        => Arr::get($user, 'response.userId'),
+            'name'      => Arr::get($user, 'response.userName'),
+            // 'nickname'  => Arr::get($user, 'response.nickname'),
             'email'     => Arr::get($user, 'response.email'),
-            'avatar'    => Arr::get($user, 'response.profile_image'),
+            'avatar'    => Arr::get($user, 'response.profile_image') ?? null,
         ]);
     }
 }
