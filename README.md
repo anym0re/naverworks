@@ -1,7 +1,7 @@
 # Naver
 
 ```bash
-composer require socialiteproviders/naver
+composer require socialiteproviders/naverworks
 ```
 
 ## Installation & Basic Usage
@@ -12,9 +12,9 @@ Please see the [Base Installation Guide](https://socialiteproviders.com/usage/),
 
 ```php
 'naver' => [
-  'client_id' => env('NAVER_CLIENT_ID'),  
-  'client_secret' => env('NAVER_CLIENT_SECRET'),  
-  'redirect' => env('NAVER_REDIRECT_URI') 
+  'client_id' => env('NAVERWORKS_CLIENT_ID'),  
+  'client_secret' => env('NAVERWORKS_CLIENT_SECRET'),  
+  'redirect' => env('NAVERWORKS_REDIRECT_URI') 
 ],
 ```
 
@@ -28,7 +28,7 @@ Add the event to your `listen[]` array in `app/Providers/EventServiceProvider`. 
 protected $listen = [
     \SocialiteProviders\Manager\SocialiteWasCalled::class => [
         // ... other providers
-        \SocialiteProviders\Naver\NaverExtendSocialite::class.'@handle',
+        \SocialiteProviders\NaverWorks\NaverWorksExtendSocialite::class.'@handle',
     ],
 ];
 ```
@@ -38,17 +38,16 @@ protected $listen = [
 You should now be able to use the provider like you would regularly use Socialite (assuming you have the facade installed):
 
 ```php
-return Socialite::driver('naver')->redirect();
+return Socialite::driver('naverworks')->redirect();
 ```
 
 ### Returned User fields
 
 - ``id``
 - ``name``
-- ``nickname``
 - ``email``
 - ``avatar``
 
 ### Reference
 
-- [Naver API Reference](https://developers.naver.com/docs/common/openapiguide/)
+- [NaverWorks API Reference](https://developers.worksmobile.com/kr/docs/api/#how-api-works)
